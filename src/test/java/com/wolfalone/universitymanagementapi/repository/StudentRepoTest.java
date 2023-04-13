@@ -57,4 +57,51 @@ class StudentRepoTest {
 
         System.out.println(studentList);
     }
+
+    @Test
+    public void printStudetnByFirstName() {
+        List<Student> list = studentRepo.findByFirstNameContaining("Cao");
+        list.stream().forEach(e -> {
+            System.out.println(e.toString());
+        });
+    }
+
+    @Test
+    public void printStudentBasedOnGuardianName(){
+        List<Student> students = studentRepo.findByGuardianName("Ahihi");
+        System.out.println(students);
+    }
+
+    @Test
+    public void printGetStudentByEmailAddress() {
+        Student student =
+                studentRepo.getStudentByEmailAddress("thien@gmail.com");
+        System.out.println(student);
+    }
+
+    @Test
+    public void printGetFirstNameOfStudentByEmailAddress(){
+        String studentName = studentRepo.getStudentFirstNameByEmailAddress("thien@gmail.com");
+        System.out.println(studentName);
+
+    }
+
+    @Test
+    public void printGetStudentByEmailUsingNativeQuery(){
+        Student student = studentRepo.getStudentByEmailAddressNative("thien@gmail.com");
+        System.out.println(student);
+    }
+
+    @Test
+    public void printGetStudentByEmailAddressNativeNamedParam(){
+        Student student = studentRepo
+                .getStudentByEmailAddressNativeNameParam("thien@gmail.com");
+        System.out.println(student);
+    }
+
+    @Test
+    public void updateStudentNameByEmailId(){
+        int count = studentRepo.updateStudentNameByEmailId("ThienHihi", "thien@gmail.com");
+        System.out.println(count);
+    }
 }
